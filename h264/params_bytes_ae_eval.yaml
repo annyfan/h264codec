@@ -1,0 +1,132 @@
+---
+base:
+  user: wfan
+  random_seed: 12346
+  logging: INFO
+dataset:
+  base_name: h264
+  data_dir: /data/
+  versions:
+    - v20231127
+  img_norm_mean:
+    - 0.485
+    - 0.456
+    - 0.406
+  img_norm_std:
+    - 0.229
+    - 0.224
+    - 0.225
+  #img_noise:
+  #  - 0.1
+  #  - 0.08
+  #img_jitter: 0.4
+  #img_hue: 0.2
+  h264_padded_seq_len: 1300 
+  img_size:
+    - 64
+    - 64
+  hist_bins: 64
+  traintest:
+    - 64371a1f94763e3cd3a50afb_7
+    - 64371ab894763e3cd3a50c55_7
+    - 64371aac94763e3cd3a50c37_7
+    - 6437420694763e3cd3a55d2d_7
+    - 6437828a94763e3cd3a5d1a9_4
+    - 64375a3894763e3cd3a582ff_2
+    - 643721de94763e3cd3a518d8_4
+    - 64373e1294763e3cd3a5564a_6
+    - 643769b194763e3cd3a5a046_2
+    - 643709a294763e3cd3a4eb55_3
+    - 64374a7794763e3cd3a568df_2
+  validtest: 
+evaluate:
+  model_folder: TBD
+  model_name: last_model.pt
+model:
+  weights: /data/train_logs/byteformer_vae_h264_v20231127_wfan_2024-01-19-20-35-55/checkpoint.750.pt
+  #checkpoint: /data/train_logs/byteformer_vae_h264_v20231127_wfan_2024-01-02-20-22-24/
+  device: 'cuda'
+  select_name: byteformer_ae
+  activation:
+    name: gelu
+    inplace: true
+    negative_slope : 0.1
+  normalization:
+    name: layer_norm
+    groups: 1
+    momentum: 0.1
+  byteformer:
+    embed_dim:  384
+    n_transformer_layers: 12
+    n_attn_heads:  6
+    ffn_dim: 1536
+    norm_layer: layer_norm
+    pos_emb_drop_p: 0.1
+    attn_dropout: 0.1
+    ffn_dropout: 0.1
+    dropout: 0.0
+    vocab_size: 257
+    dummy_input_token_length: 48564
+    stochastic_dropout: 0.1
+    sinusoidal_pos_emb: true
+    max_num_tokens: 50000
+    conv_kernel_size: 16  # 4 : 18432(seq_len 12288), 2: 36864(seq_len 12288)
+    conv_stride: 1
+    window_sizes: [128]
+    padding_index: -1
+  decovdecoder:
+    reduction_dim:
+      - 384
+      - 512
+      - 1024
+      - 2048
+      - 4096
+    embeding_dim: 4096 #18432 #seq_len 12288: 36864
+    n_init: 4096
+    reconstruction_loss: mssiml1
+    kld_weight: 0.00025
+    gaussian_sigmas: 
+      - 0.5
+      - 1.0
+      - 2.0
+      - 4.0
+      - 8.0
+    alpha: 0.025
+    feature_loss: vgg
+    vgg_weight: 0.01
+    vgg_layer: 8 # relu2_2
+train:
+  batch_size: 440
+  max_batch_size: 220
+  batch_size_test: 20
+  num_workers: 8
+  save_folder: train_logs
+  sampler: Sequential
+  optimizer: adamw #Adam #adamw
+  learning_rate:  1e-4 # 5e-2, 5e-3, 5e-4, 5e-5, 5e-6
+  verbose: False
+  last_epoch: 0
+  num_epochs: 0
+  show_epochs: 20
+  can_checkpoint: true
+  checkpoint_every: 100
+  sample_every: 10
+  scheduler:
+    warmup_steps: 1000
+    warmup_init_lr: 1e-5
+    #name: fix
+    #lr: 1e-4
+    #max_steps: 2500000
+    #name: plateau
+    #lr: 1e-4
+    #max_epochs: 1500
+    #lr_min: 1e-5
+    #factor: 0.98
+    #patience: 3
+    #dont_halve_until_epoch: 300
+    name: cosine
+    cosine_decay_max_steps: 400000
+    cosine_min_lr: 1e-5
+    cosine_max_lr: 1e-4
+reports: null
+
