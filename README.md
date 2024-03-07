@@ -67,8 +67,13 @@ Our model achieves the following performance on :
 
 
 #Related Work
+
 https://github.com/apple/ml-cvnets
+
 https://github.com/AntixK/PyTorch-VAE/blob/master/models/mssim_vae.py#L182
+
 https://github.com/crowsonkb/vgg_loss
+
 https://github.com/psyrocloud/MS-SSIM_L1_LOSS/tree/main
+
 https://github.com/openai/DALL-E
