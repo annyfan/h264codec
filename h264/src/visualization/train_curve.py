@@ -1,8 +1,8 @@
 # ----------------------------------------------------------------------------------------------
-# Copyright (C) Botni.Vision, Inc - Montreal, QC, Canada - All Rights Reserved
+# Copyright (C) B - All Rights Reserved
 # Unauthorized copying, use, or modification to this file via any medium is strictly prohibited.
 # This file is private and confidential.
-# Contact: dev@botni.vision
+# Contact: dev@b
 # ----------------------------------------------------------------------------------------------
 
 import logging
@@ -78,7 +78,7 @@ def plot_single_loss(config: dict, trainInfo: dict) -> None:
     valTime = np.mean([t["time"] for t in trainInfo[TrainStage.VALIDATE.name]])
     path = pathlib.PurePath(config["train"]["model_path"])
     titleMsg = (
-        r"$\bf{BytesNet\ -\ Botni.vision}$"
+        r"$\bf{BytesNet\ -\ B}$"
         f"\n{path.name}\n"
         f"Time[T/V](s):{trainTime:.1f}/{valTime:.1f}"
     )
@@ -188,7 +188,7 @@ def plot_multi_loss(config: dict, trainInfo: dict) -> None:
     valTime = np.mean([t["time"] for t in trainInfo[TrainStage.VALIDATE.name]])
     path = pathlib.PurePath(config["train"]["model_path"])
     titleMsg = (
-        r"$\bf{HypeNet\ -\ Botni.vision}$"
+        r"$\bf{HypeNet\ -\ B}$"
         f"\n{path.name}\n"
         f"Time[T/V](s):{trainTime:.1f}/{valTime:.1f}"
     )
