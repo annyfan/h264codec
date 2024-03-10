@@ -16,11 +16,13 @@ pip install -r requirements.txt
 ```
 
 To download dataset:
-TODO:
+[tar.gz](https://drive.google.com/file/d/109OQSEKTxYxC9-qRWA_ZL0_f2epiVYtO/view?usp=drive_link)
+
+TODO: we are going to load it to huggingface
 
 
 Data preprocess: 
-
+- untar the dataset 
 - open h264/src/utils/cleanup_samples.py, make sure the dataset folders are correct
 - run: 
 ```cleanup
