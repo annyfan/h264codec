@@ -18,7 +18,7 @@ pip install -r requirements.txt
 To download dataset:
 [tar.gz](https://drive.google.com/file/d/109OQSEKTxYxC9-qRWA_ZL0_f2epiVYtO/view?usp=drive_link)
 
-TODO: we are going to load it to huggingface
+TODO: we are going to share it in huggingface
 
 
 Data preprocess: 
