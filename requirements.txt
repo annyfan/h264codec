@@ -1,5 +1,5 @@
-pandas~=2.1.1
-numpy~=1.26.1
+pandas
+numpy
 torch
 torchvision
 Pillow~=10.1.0
@@ -20,3 +20,5 @@ fastai~=2.7.13
 torchmetrics
 torch-fidelity
 
+huggingface_hub
+datasets
