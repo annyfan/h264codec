@@ -370,10 +370,10 @@ def upload(config: dict) -> None:
 
     
     #val_dataset = datasets.Dataset.from_generator(gen, gen_kwargs={"dataloader": valLoader})
-    #val_dataset.push_to_hub("BotniVision/h264_images", split="validation", token="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") #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
+    #val_dataset.push_to_hub("BotniVision/h264_images", split="validation", token="hf_xxxx") #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
     #print(train_dataset[0]["id"])
     train_dataset = datasets.Dataset.from_generator(gen, gen_kwargs={"dataloader": trainLoader})
-    train_dataset.push_to_hub("BotniVision/h264_images", split="train", token="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")
+    train_dataset.push_to_hub("BotniVision/h264_images", split="train", token="hf_xxxx")
    
 
 if __name__ == "__main__":
